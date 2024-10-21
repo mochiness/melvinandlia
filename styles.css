@@ -11,7 +11,15 @@ body {
   height: 100vh;
   flex-direction: column; /* Stack elements vertically */
 }
-
+.left-image img {
+  max-width: 200px;  /* Limit the size of the image */
+  height: auto;  /* Keep the aspect ratio */
+  margin-right: 20px;  /* Add space between the image and the content */
+}
+.content {
+  flex-grow: 1;  /* Allow the content to take up remaining space */
+  padding: 20px;
+}
 h1 {
   color: #ff6b81;  /* Bright pink for the header */
   font-size: 2.5rem;
