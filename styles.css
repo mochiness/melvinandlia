@@ -108,8 +108,18 @@ h1 {
 }
 
 /* Mobile Responsiveness */
-@media screen and (max-width: 600px) {
-  #chat-box, #message-box, #send-btn {
-      width: 90%;
-  }
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row; /* Side-by-side layout on wider screens */
+        align-items: center;
+    }
+
+    #message-box {
+        width: 75%;  /* Make the input box smaller */
+        margin-right: 10px;
+    }
+
+    #send-btn {
+        width: 20%;
+    }
 }
