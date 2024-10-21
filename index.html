@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Chat App</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #chat-box { height: 300px; border: 1px solid #ccc; padding: 10px; overflow-y: scroll; }
+        #message-box { width: 100%; padding: 10px; }
+        #send-btn { margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Our Chatroom</h1>
+    <div id="chat-box"></div>
+    <input type="text" id="message-box" placeholder="Type your message here..." />
+    <button id="send-btn">Send</button>
+
+    <!-- Firebase Libraries -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+
+    <script>
+        // Firebase config object from Firebase Console
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // DOM Elements
+        const chatBox = document.getElementById('chat-box');
+        const messageBox = document.getElementById('message-box');
+        const sendBtn = document.getElementById('send-btn');
+
+        // Function to display message
+        function displayMessage(message) {
+            const newMessage = document.createElement('div');
+            newMessage.textContent = message;
+            chatBox.appendChild(newMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;  // Auto-scroll to bottom
+        }
+
+        // Send message to Firestore
+        sendBtn.addEventListener('click', () => {
+            const message = messageBox.value;
+            if (message.trim() !== '') {
+                db.collection('messages').add({
+                    message: message,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                messageBox.value = '';
+            }
+        });
+
+        // Listen for new messages in Firestore
+        db.collection('messages').orderBy('timestamp').onSnapshot(snapshot => {
+            chatBox.innerHTML = '';  // Clear the chatbox
+            snapshot.forEach(doc => {
+                displayMessage(doc.data().message);
+            });
+        });
+    </script>
+</body>
+</html>

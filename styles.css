@@ -1,0 +1,107 @@
+/* General Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #ffe6f0;  /* Light pink background */
+  color: #333;  /* Text color */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column; /* Stack elements vertically */
+}
+
+h1 {
+  color: #ff6b81;  /* Bright pink for the header */
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Chat Container */
+#chat-box {
+  width: 90%;
+  max-width: 600px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 20px;  /* Rounded corners */
+  border: 2px solid #ff6b81;  /* Pink border */
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Soft shadow */
+  overflow-y: scroll;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#chat-box div {
+  background-color: #ffccd5;  /* Light pink message background */
+  border-radius: 15px;
+  padding: 10px 15px;
+  margin: 10px 0;
+  color: #333;
+  font-size: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#message-box {
+  width: 90%;
+  max-width: 600px;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid #ff6b81;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Slight shadow */
+}
+
+#message-box:focus {
+  border-color: #ff94a8;  /* Slightly lighter pink when focused */
+}
+
+#send-btn {
+  width: 90%;
+  max-width: 600px;
+  padding: 15px;
+  background-color: #ff6b81;  /* Pink button */
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);  /* Button shadow */
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+}
+
+#send-btn:hover {
+  background-color: #ff94a8;  /* Lighter pink on hover */
+}
+
+#send-btn:active {
+  background-color: #ff5773;  /* Darker pink on click */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);  /* Less shadow on click */
+}
+
+/* Scrollbar Styling */
+#chat-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+#chat-box::-webkit-scrollbar-track {
+  background: #ffd9e0;  /* Light pink scrollbar track */
+}
+
+#chat-box::-webkit-scrollbar-thumb {
+  background: #ff6b81;  /* Pink scrollbar */
+  border-radius: 10px;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 600px) {
+  #chat-box, #message-box, #send-btn {
+      width: 90%;
+  }
+}
